@@ -41,17 +41,6 @@ export default {
     CountDownItem,
   },
   methods: {
-    splitToDigit(n) {
-      // Fail gracefully when number is not valid
-      if (n < 0 || isNaN(n)) return [0, 0]
-
-      // Add zero for single digits
-      if (n.toString().length <= 1) n = `0${n}`
-
-      // Convert to string and spread it into array
-      // flip in back to a number - Number callback
-      return [...(n + '')].map(Number)
-    },
     startCounter() {
       // Start timer based on distance
       if (this.isDistance) {
@@ -63,6 +52,17 @@ export default {
     getComputedByName(name) {
       // Get property name by string
       return this[name]
+    },
+    splitToDigit(n) {
+      // Fail gracefully when number is not valid
+      if (n < 0 || isNaN(n)) return [0, 0]
+
+      // Add zero for single digits
+      if (n.toString().length <= 1) n = `0${n}`
+
+      // Convert to string and spread it into array
+      // flip in back to a number - Number callback
+      return [...(n + '')].map(Number)
     },
   },
   watch: {
