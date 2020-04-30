@@ -1,10 +1,5 @@
 <template>
   <div class="cdt-dz">
-    <!-- <CountDownItem :data="days" label="Days" />
-    <CountDownItem :data="hours" label="Hours" />
-    <CountDownItem :data="minutes" label="Mins" />
-    <CountDownItem :data="seconds" label="Secs" /> -->
-
     <CountDownItem
       v-for="(item, k, i) in schema"
       :key="i"
