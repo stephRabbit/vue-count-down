@@ -14,6 +14,7 @@ import CountDownItem from '@/components/CountDownItem'
 
 export default {
   created() {
+    // Start on create
     this.startCounter()
   },
   data() {
@@ -41,8 +42,8 @@ export default {
   },
   methods: {
     splitToDigit(n) {
-      // Return [0, 0] for display when number is below 0
-      if (n < 0) return [0, 0]
+      // Fail gracefully when number is not valid
+      if (n < 0 || isNaN(n)) return [0, 0]
 
       // Add zero for single digits
       if (n.toString().length <= 1) n = `0${n}`
@@ -60,11 +61,13 @@ export default {
       }
     },
     getComputedByName(name) {
+      // Get property name by string
       return this[name]
     },
   },
   watch: {
     now(currentVal) {
+      // Clear timer once countdown ends
       if (currentVal > this.ms) {
         clearInterval(this.timer)
       }
