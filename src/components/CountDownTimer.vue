@@ -8,8 +8,10 @@
     />
   </div>
 </template>
+
 <script>
 import CountDownItem from '@/components/CountDownItem'
+
 export default {
   created() {
     this.startCounter()
@@ -96,6 +98,7 @@ export default {
   },
 }
 </script>
+
 <style lang="scss" scoped>
 .cdt-dz {
   text-align: center;

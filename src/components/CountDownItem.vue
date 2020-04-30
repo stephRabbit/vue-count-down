@@ -6,6 +6,7 @@
     <p class="cdt-dz-item__label">{{ label }}</p>
   </div>
 </template>
+
 <script>
 export default {
   props: {
@@ -19,6 +20,7 @@ export default {
   },
 }
 </script>
+
 <style lang="scss" scoped>
 @import '@/scss/_variables.scss';
 
