@@ -4,7 +4,7 @@
     <section class="cnt-dz">
       <div class="cnt-dz__block">
         <h1 class="cnt-dz__title">Leezy Boost 103</h1>
-        <CountDownTimer date="04/30/2020" :schema="schema" />
+        <CountDownTimer date="05/26/2020" :schema="schema" />
         <p class="cnt-dz__text">Until Drop</p>
       </div>
     </section>

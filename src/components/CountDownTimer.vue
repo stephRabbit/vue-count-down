@@ -14,12 +14,11 @@ import CountDownItem from '@/components/CountDownItem'
 
 export default {
   created() {
-    // Start on create
     this.startCounter()
   },
   data() {
     return {
-      now: Math.floor(new Date().getTime() / 1000),
+      now: Math.floor(+new Date() / 1000),
       timer: null,
       defaultTime: '23:59:59',
     }
@@ -45,7 +44,7 @@ export default {
       // Start timer based on distance
       if (this.isDistance) {
         this.timer = setInterval(() => {
-          this.now = Math.floor(new Date().getTime() / 1000)
+          this.now = Math.floor(+new Date() / 1000)
         }, 1000)
       }
     },
@@ -68,35 +67,43 @@ export default {
   watch: {
     now(currentVal) {
       // Clear timer once countdown ends
-      if (currentVal > this.ms) {
+      if (currentVal > this.then) {
         clearInterval(this.timer)
       }
     },
   },
   computed: {
-    dateTime() {
+    dateString() {
+      // Date string
       return `${this.date} ${this.range || this.defaultTime}`
     },
-    ms() {
-      return Math.floor(new Date(this.dateTime).getTime() / 1000)
+    then() {
+      // Timestamp past in seconds
+      return Math.floor(new Date(this.dateString).getTime() / 1000)
     },
     isDistance() {
-      return this.ms > this.now
+      // Check if time it time has expired (then > now)
+      return this.then > this.now
     },
     distance() {
-      return this.ms - this.now
+      // Check length of time (then - now) in seconds
+      return this.then - this.now
     },
     seconds() {
+      // Distance in seconds divide 60 and get the remainder
       return this.splitToDigit(this.distance % 60)
     },
     minutes() {
+      // Distance in seconds divide 60 * 2 and get the remainder
       return this.splitToDigit(Math.floor(this.distance / 60) % 60)
     },
     hours() {
+      // Distance in seconds divide 60 * 2 / 24 and get the remainder
       return this.splitToDigit(Math.floor(this.distance / 60 / 60) % 24)
     },
     days() {
-      return this.splitToDigit(Math.floor((this.ms - this.now) / 60 / 60 / 24))
+      // Distance in seconds divide 60 * 2 / 24
+      return this.splitToDigit(Math.floor(this.distance / 60 / 60 / 24))
     },
   },
 }
